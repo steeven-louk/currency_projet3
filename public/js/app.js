@@ -19810,9 +19810,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'Dashboard',
   setup: function setup(__props, _ref) {
+    var _console3;
     var __expose = _ref.expose;
     __expose();
     var devises = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)([]);
+    var paires = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)([]);
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
     var deviceName = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)("");
     var alertMsg = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)("");
@@ -19834,7 +19836,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 8:
               _context.prev = 8;
               _context.t0 = _context["catch"](0);
-              /* eslint-disable */(_console = console).log.apply(_console, _toConsumableArray(oo_oo("97762dee_0", _context.t0)));
+              /* eslint-disable */(_console = console).log.apply(_console, _toConsumableArray(oo_oo("859c77c5_0", _context.t0)));
             case 11:
             case "end":
               return _context.stop();
@@ -19845,69 +19847,101 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _ref2.apply(this, arguments);
       };
     }();
-    var addDevises = /*#__PURE__*/function () {
+    var getPaires = /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var _console2, data, _console3;
+        var _yield$axios2, data, _console2;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
               _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/device', {
-                name: deviceName.value
-              });
+              return axios__WEBPACK_IMPORTED_MODULE_0___default()('/api/paire');
             case 3:
-              data = _context2.sent;
-              /* eslint-disable */(_console2 = console).log.apply(_console2, _toConsumableArray(oo_oo("97762dee_1", data)));
-              deviceName.value = "";
-              showModal.value = false;
-              getDevices();
-              _context2.next = 13;
+              _yield$axios2 = _context2.sent;
+              data = _yield$axios2.data;
+              paires.value = data;
+              _context2.next = 11;
               break;
-            case 10:
-              _context2.prev = 10;
+            case 8:
+              _context2.prev = 8;
               _context2.t0 = _context2["catch"](0);
-              /* eslint-disable */(_console3 = console).log.apply(_console3, _toConsumableArray(oo_oo("97762dee_2", _context2.t0)));
-            case 13:
+              /* eslint-disable */(_console2 = console).log.apply(_console2, _toConsumableArray(oo_oo("859c77c5_1", _context2.t0)));
+            case 11:
             case "end":
               return _context2.stop();
           }
-        }, _callee2, null, [[0, 10]]);
+        }, _callee2, null, [[0, 8]]);
       }));
-      return function addDevises() {
+      return function getPaires() {
         return _ref3.apply(this, arguments);
       };
     }();
-    var deleteDevises = /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id) {
-        var _console4, _yield$axios$delete, data, _console5;
+    getPaires();
+    /* eslint-disable */
+    (_console3 = console).log.apply(_console3, _toConsumableArray(oo_oo("859c77c5_2", paires)));
+    var addDevises = /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var _console4, data, _console5;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]('/api/device/' + id);
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/device', {
+                name: deviceName.value
+              });
             case 3:
-              _yield$axios$delete = _context3.sent;
-              data = _yield$axios$delete.data;
-              setTimeout(alertMsg.value = data.message, 3000);
+              data = _context3.sent;
+              /* eslint-disable */(_console4 = console).log.apply(_console4, _toConsumableArray(oo_oo("859c77c5_3", data)));
+              deviceName.value = "";
+              showModal.value = false;
               getDevices();
-              /* eslint-disable */
-              (_console4 = console).log.apply(_console4, _toConsumableArray(oo_oo("97762dee_3", data)));
               _context3.next = 13;
               break;
             case 10:
               _context3.prev = 10;
               _context3.t0 = _context3["catch"](0);
-              /* eslint-disable */(_console5 = console).log.apply(_console5, _toConsumableArray(oo_oo("97762dee_4", _context3.t0)));
+              /* eslint-disable */(_console5 = console).log.apply(_console5, _toConsumableArray(oo_oo("859c77c5_4", _context3.t0)));
             case 13:
             case "end":
               return _context3.stop();
           }
         }, _callee3, null, [[0, 10]]);
       }));
-      return function deleteDevises(_x) {
+      return function addDevises() {
         return _ref4.apply(this, arguments);
+      };
+    }();
+    var deleteDevises = /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id) {
+        var _console6, _yield$axios$delete, data, _console7;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]('/api/device/' + id);
+            case 3:
+              _yield$axios$delete = _context4.sent;
+              data = _yield$axios$delete.data;
+              setTimeout(alertMsg.value = data.message, 3000);
+              getDevices();
+              /* eslint-disable */
+              (_console6 = console).log.apply(_console6, _toConsumableArray(oo_oo("859c77c5_5", data)));
+              _context4.next = 13;
+              break;
+            case 10:
+              _context4.prev = 10;
+              _context4.t0 = _context4["catch"](0);
+              /* eslint-disable */(_console7 = console).log.apply(_console7, _toConsumableArray(oo_oo("859c77c5_6", _context4.t0)));
+            case 13:
+            case "end":
+              return _context4.stop();
+          }
+        }, _callee4, null, [[0, 10]]);
+      }));
+      return function deleteDevises(_x) {
+        return _ref5.apply(this, arguments);
       };
     }();
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.watch)(function () {
@@ -19956,10 +19990,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     ; /*eslint eslint-comments/disable-enable-pair:,eslint-comments/no-unlimited-disable:,eslint-comments/no-aggregating-enable:,eslint-comments/no-duplicate-disable:,eslint-comments/no-unused-disable:,eslint-comments/no-unused-enable:,*/
     var __returned__ = {
       devises: devises,
+      paires: paires,
       showModal: showModal,
       deviceName: deviceName,
       alertMsg: alertMsg,
       getDevices: getDevices,
+      getPaires: getPaires,
       addDevises: addDevises,
       deleteDevises: deleteDevises,
       oo_cm: oo_cm,
@@ -21106,13 +21142,19 @@ var _hoisted_20 = {
 };
 var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
   "class": "border"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Id"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Id"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Devise 1"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Devise 2"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Taux"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   colspan: "5"
 }, "action")])], -1 /* HOISTED */);
 var _hoisted_22 = {
   "class": "uppercase font-bold"
 };
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_23 = {
+  "class": "uppercase font-bold"
+};
+var _hoisted_24 = {
+  "class": "uppercase font-bold"
+};
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "bg-red-700 p-2 capitalize font-semibold text-white"
 }, "delete"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "bg-blue-400 p-2 text-white"
@@ -21151,10 +21193,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, ["prevent"]),
           "class": "bg-red-700 p-2 capitalize font-semibold text-white"
         }, "delete", 8 /* PROPS */, _hoisted_15), _hoisted_16])]);
-      }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.devices, function (device) {
+      }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.paires.response, function (paire) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-          key: device.id
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(device.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(device.name), 1 /* TEXT */), _hoisted_23]);
+          key: paire.id
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.devise_1), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.devise_2), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.taux), 1 /* TEXT */), _hoisted_25]);
       }), 128 /* KEYED_FRAGMENT */))])])])])])])];
     }),
 

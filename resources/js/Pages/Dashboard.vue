@@ -5,6 +5,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 import { ref , watch} from 'vue';
 
 const devises = ref([]);
+const paires = ref([]);
 const showModal = ref(false);
 const deviceName = ref("");
 const alertMsg = ref("");
@@ -17,6 +18,17 @@ const getDevices = async()=>{
     console.log(error)
    }
 }
+
+const getPaires = async()=>{
+   try {
+    const {data} = await axios('/api/paire')
+    paires.value = data;
+   } catch (error) {
+    console.log(error)
+   }
+}
+getPaires();
+console.log(paires)
 
 const addDevises = async()=>{
    try {
@@ -106,14 +118,18 @@ watch(() => {
                             <thead class="border">
                                 <tr>
                                     <th>Id</th>
-                                    <th>Name</th>
+                                    <th>Devise 1</th>
+                                    <th>Devise 2</th>
+                                    <th>Taux</th>
                                     <th colspan="5">action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="device in devices" :key="device.id">
-                                    <td>{{ device.id }}</td>
-                                    <td class="uppercase font-bold">{{ device.name }}</td>
+                                <tr v-for="paire in paires.response" :key="paire.id">
+                                    <td>{{ paire.id }}</td>
+                                    <td class="uppercase font-bold">{{ paire.devise_1 }}</td>
+                                    <td class="uppercase font-bold">{{ paire.devise_2 }}</td>
+                                    <td class="uppercase font-bold">{{ paire.taux }}</td>
                                     <td><button class="bg-red-700 p-2 capitalize font-semibold text-white">delete</button>
                                         <button class="bg-blue-400 p-2 text-white">update</button></td>
                                 </tr>
