@@ -19834,7 +19834,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 8:
               _context.prev = 8;
               _context.t0 = _context["catch"](0);
-              /* eslint-disable */(_console = console).log.apply(_console, _toConsumableArray(oo_oo("bbf6a70a_0", _context.t0)));
+              /* eslint-disable */(_console = console).log.apply(_console, _toConsumableArray(oo_oo("97762dee_0", _context.t0)));
             case 11:
             case "end":
               return _context.stop();
@@ -19858,7 +19858,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               });
             case 3:
               data = _context2.sent;
-              /* eslint-disable */(_console2 = console).log.apply(_console2, _toConsumableArray(oo_oo("bbf6a70a_1", data)));
+              /* eslint-disable */(_console2 = console).log.apply(_console2, _toConsumableArray(oo_oo("97762dee_1", data)));
               deviceName.value = "";
               showModal.value = false;
               getDevices();
@@ -19867,7 +19867,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 10:
               _context2.prev = 10;
               _context2.t0 = _context2["catch"](0);
-              /* eslint-disable */(_console3 = console).log.apply(_console3, _toConsumableArray(oo_oo("bbf6a70a_2", _context2.t0)));
+              /* eslint-disable */(_console3 = console).log.apply(_console3, _toConsumableArray(oo_oo("97762dee_2", _context2.t0)));
             case 13:
             case "end":
               return _context2.stop();
@@ -19893,13 +19893,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               setTimeout(alertMsg.value = data.message, 3000);
               getDevices();
               /* eslint-disable */
-              (_console4 = console).log.apply(_console4, _toConsumableArray(oo_oo("bbf6a70a_3", data)));
+              (_console4 = console).log.apply(_console4, _toConsumableArray(oo_oo("97762dee_3", data)));
               _context3.next = 13;
               break;
             case 10:
               _context3.prev = 10;
               _context3.t0 = _context3["catch"](0);
-              /* eslint-disable */(_console5 = console).log.apply(_console5, _toConsumableArray(oo_oo("bbf6a70a_4", _context3.t0)));
+              /* eslint-disable */(_console5 = console).log.apply(_console5, _toConsumableArray(oo_oo("97762dee_4", _context3.t0)));
             case 13:
             case "end":
               return _context3.stop();
