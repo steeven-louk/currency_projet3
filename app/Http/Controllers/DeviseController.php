@@ -38,6 +38,15 @@ class DeviseController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            "name" =>"required|unique:devises"
+        ]);
+
+        $devise = new Devises();
+        $devise->name = $request->input('name');
+        $devise->save();
+
+        return response()->json($devise, 201);
     }
 
     /**
@@ -83,5 +92,10 @@ class DeviseController extends Controller
     public function destroy($id)
     {
         //
+        $devise =  Devises::FindOrFail($id);
+        $devise-> delete();
+
+        return response()->json(["message"=>"devise has been deleted successfully"], 200);
+
     }
 }

@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Devises extends Model
 {
+    protected $fillable =[
+        "name"
+    ];
+
     use HasFactory;
+
 }
