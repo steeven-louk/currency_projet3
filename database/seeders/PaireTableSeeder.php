@@ -16,12 +16,12 @@ class PaireTableSeeder extends Seeder
     {
         //
         $paires = [
-            ['devise_1' => 'USD', 'devise_2' => 'EUR', 'taux' => 0.85],
-            ['devise_1' => 'EUR', 'devise_2' => 'USD', 'taux' => 1.18], // Paire en sens inverse
+            ['devise_1' => 'USD', 'devise_2' => 'EUR', 'taux' => 0.89],
+            ['devise_1' => 'EUR', 'devise_2' => 'USD', 'taux' => 1.11], // Paire en sens inverse
             ['devise_1' => 'USD', 'devise_2' => 'BTC', 'taux' => 0.00003],
-            ['devise_1' => 'BTC', 'devise_2' => 'USD', 'taux' => 35000], // Paire en sens inverse
-            ['devise_1' => 'EUR', 'devise_2' => 'BTC', 'taux' => 0.000035],
-            ['devise_1' => 'BTC', 'devise_2' => 'EUR', 'taux' => 28571.42], // Paire en sens inverse
+            ['devise_1' => 'BTC', 'devise_2' => 'USD', 'taux' => 29827.8], // Paire en sens inverse
+            ['devise_1' => 'EUR', 'devise_2' => 'BTC', 'taux' => 0.000037],
+            ['devise_1' => 'BTC', 'devise_2' => 'EUR', 'taux' => 26830], // Paire en sens inverse
             // Ajoutez d'autres paires de devises si nécessaire
         ];
 

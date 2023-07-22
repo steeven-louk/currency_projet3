@@ -14,4 +14,9 @@ class Paires extends Model
         "devise_2",
         "taux"
     ];
+
+    public function convertions()
+    {
+        return $this->hasMany(conversion::class);
+    }
 }

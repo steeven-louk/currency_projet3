@@ -17,8 +17,8 @@ class PaireController extends Controller
         //
         $data = Paires::all();
         return response()->json([
-            "status"=> 200,
             "response" => $data,
+            "status"=> 200
         ]);
     }
 
@@ -34,30 +34,20 @@ class PaireController extends Controller
         $request->validate([
             "devise_1"=> "required|max:3",
             "devise_2"=> "required|max:3",
-            "paire"=> "required|integer",
+            "taux"=> "required|integer",
         ]);
 
         $paire = new Paires();
         $paire-> devise_1 =$request->input('devise_1');
         $paire-> devise_2 =$request->input('devise_2');
-        $paire-> paire =$request->input('paire');
+        $paire-> taux =$request->input('taux');
 
         $paire-> save();
         
-        return response()->json(["status"=>201, "message"=>"paire has added", $paire]);
+        return response()->json(["message"=>"paire has added", $paire, "status"=>201]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
+   
     /**
      * Update the specified resource in storage.
      *
@@ -67,7 +57,25 @@ class PaireController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "devise_1"=> "required|max:3",
+            "devise_2"=> "required|max:3",
+            "taux"=> "required|integer",
+        ]);
+
+        
+        $paire = Paires::findOrFail($id);
+
+        if(!$paire) return response()->json(["error"=> "paire not found", "status"=> 404]);
+
+        $paire-> devise_1 =$request->input('devise_1');
+        $paire-> devise_2 =$request->input('devise_2');
+        $paire-> taux =$request->input('taux');
+
+        $paire-> save();
+    
+        return response()->json(["message"=>"paire has been updated", $paire, "status"=>201]);
+
     }
 
     /**
@@ -79,7 +87,8 @@ class PaireController extends Controller
     public function destroy($id)
     {
         $data = Paires::FindOrFail($id);
+        if(!$data) return response()->json(["error"=> "paires not found", "status"=> 404]);
         $data->delete();
-        return response()->json(["message"=>"paires deleted successfully", "status"=> 204]);
+        return response()->json(["message"=>"paires deleted successfully", "status"=> 200]);
     }
 }

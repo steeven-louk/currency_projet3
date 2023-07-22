@@ -14,20 +14,10 @@ class DeviseController extends Controller
      */
     public function index()
     {
-        return 
         $data = Devises::all();
-        return response()->json( $data, 200);
+        return response()->json([ $data, "status"=>200]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -46,30 +36,10 @@ class DeviseController extends Controller
         $devise->name = $request->input('name');
         $devise->save();
 
-        return response()->json($devise, 201);
+        return response()->json(["message"=>"devise has been created",$devise, "status"=> 201]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -80,7 +50,18 @@ class DeviseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:devises,name,' . $id,
+        ]);
+    
+        $devise = Devises::findOrFail($id);
+
+        if(!$devise) return response()->json(["error"=> "devises not found", "status"=> 404]);
+
+        $devise->name = $request->input('name');
+        $devise->save();
+    
+        return response()->json(["message"=>"devise has been updated successfully",$devise, "status"=>200]);
     }
 
     /**
@@ -93,9 +74,11 @@ class DeviseController extends Controller
     {
         //
         $devise =  Devises::FindOrFail($id);
+        if(!$devise) return response()->json(["error"=> "devises not found", "status"=> 404]);
+
         $devise-> delete();
 
-        return response()->json(["message"=>"devise has been deleted successfully"], 200);
+        return response()->json(["message"=>"devise has been deleted successfully", "status"=>200]);
 
     }
 }
