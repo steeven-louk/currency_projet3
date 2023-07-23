@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Error;
 use App\Models\Paires;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,7 @@ class PaireController extends Controller
             "taux"=> "required|integer",
         ]);
 
+       try {
         $paire = new Paires();
         $paire-> devise_1 =$request->input('devise_1');
         $paire-> devise_2 =$request->input('devise_2');
@@ -44,7 +46,10 @@ class PaireController extends Controller
 
         $paire-> save();
         
-        return response()->json(["message"=>"paire has added", $paire, "status"=>201],201);
+        return response()->json(["message"=>"paire has added","reponse"=> $paire, "status"=>201],201);
+       } catch (Error $e) {
+        return response()->json($e, 500);
+       }
     }
 
    

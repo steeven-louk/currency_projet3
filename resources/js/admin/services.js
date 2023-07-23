@@ -6,9 +6,7 @@ const addDevises = async (deviseName, showModal) => {
         console.log(data);
         deviseName.value = "";
         showModal.value = false;
-        console.log(deviseName)
-        console.log(data)
-        // getDevises();
+
     } catch (error) {
         console.log(error)
     }
@@ -18,11 +16,10 @@ const addPaires = async (devise_1,devise_2, taux, showPaireModal) => {
     try {
         const data = await axios.post('/api/paire', { devise_1: devise_1.value, devise_2: devise_2.value,taux: taux.value})
         console.log('data',data);
-        taux.value = "";
         devise_1.value = "";
         devise_2.value = "";
+        taux.value = "";
         showPaireModal.value = false;
-        // getPaires();
     } catch (error) {
         console.log(error)
     }
@@ -62,8 +59,8 @@ const updateDevises = async (id) => {
     try {
         const { data } = await axios.put('/api/paire/' + id);
 
-        setTimeout(alertMsg.value = data.message, 3000);
-        getPaires();
+       
+        // getPaires();
         console.log(data);
     } catch (error) {
         console.log(error);

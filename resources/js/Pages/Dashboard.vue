@@ -7,6 +7,7 @@ import {getDevises , getPaires,addPaires, addDevises, deleteDevises, updateDevis
 const devises = ref([]);
 const paires = ref([]);
 const showModal = ref(false);
+const showUpdateModal = ref(false);
 const showPaireModal = ref(false);
 const deviseName = ref("");
 const device_1 = ref("");
@@ -31,6 +32,12 @@ const addPaire =()=>{
 }
 const deleteDevise = (id)=>{
     deleteDevises(id);
+    getDevises(devises);
+
+}
+
+const updateDevise = (id)=>{
+    updateDevises(id);
     getDevises(devises);
 
 }
@@ -83,29 +90,29 @@ getDevises(devises);
                 <span @click="showModal = false" class="font-bold ml-auto p-2 text-white  block cursor-pointer">X</span>
                 <form @submit.prevent="addDevise" class="flex flex-col mx-auto align-center mt-4 justify-center">
 
-                    <input type="text" placeholder="add devise" class="form-input" v-model="deviseName" 
-                        name="name">
+                    <input type="text" placeholder="add devise" class="form-input" v-model="deviseName"  name="name">
                     <button type="submit"
                         class="bg-green-800 text-white font-bold uppercase mx-auto w-[15em] p-2 mt-3 rounded-md">add</button>
 
                 </form>
             </div>
+           
 
             <div class="modal" v-show="showPaireModal">
                 <button type="button" @click="showPaireModal = false" class="font-bold ml-auto p-2 bg-red-500 rounded block cursor-pointer">X</button>
-                <form @submit.prevent="addPaires(devise_1,devise_2,taux)" class="flex flex-col gap-4 mx-auto align-center justify-center">
+                <form @submit.prevent="addPaires" class="flex flex-col gap-4 mx-auto align-center justify-center">
 
                     <input type="text" max="3" placeholder="Devise 1" required class="form-input" v-model="devise_1" 
                         name="devise_1">
                         <input type="text" max="3" placeholder="Devise 2" required class="form-input" v-model="devise_2"
                         name="devise_2">
-                        <input type="number" placeholder="Taux" required class="form-input" v-model="taux"
-                        name="taux">
+                        <input type="text" placeholder="Taux" required class="form-input" v-model="taux" name="taux">
                     <button type="submit"
                         class="bg-green-800 text-white font-bold uppercase mx-auto w-[15em] p-2 mt-3 rounded-md">add paire</button>
 
                 </form>
             </div>
+            
 
 
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -138,6 +145,16 @@ getDevises(devises);
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr v-for="devise in devises.response" :key="devise.id">
+                                    <div class="modal" v-show="showUpdateModal">
+                <span @click="showUpdateModal = false" class="font-bold ml-auto p-2 text-white  block cursor-pointer">X</span>
+                <form @submit.prevent="updateDevise(devise.id)" class="flex flex-col mx-auto align-center mt-4 justify-center">
+
+                    <input type="text" placeholder="update devise" class="form-input" v-model="deviseName"  name="name">
+                    <button type="submit"
+                        class="bg-green-800 text-white font-bold uppercase mx-auto w-[15em] p-2 mt-3 rounded-md">update</button>
+
+                </form>
+            </div>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ devise.id }}
                                     </td>
@@ -150,7 +167,7 @@ getDevises(devises);
                                                 class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300">
                                                 delete
                                             </button>
-                                            <button @click= "updateDevises(devise.id)"
+                                            <button @click= "showUpdateModal = true"
                                                 class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">
                                                 update
                                             </button>

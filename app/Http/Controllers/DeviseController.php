@@ -57,12 +57,12 @@ class DeviseController extends Controller
     
         $devise = Devises::findOrFail($id);
 
-        if(!$devise) return response()->json(["error"=> "devises not found", "status"=> 404]);
+        if(!$devise) return response()->json(["error"=> "devises not found", "status"=> 404],404);
 
         $devise->name = $request->input('name');
         $devise->save();
     
-        return response()->json(["message"=>"devise has been updated successfully",$devise, "status"=>200]);
+        return response()->json(["message"=>"devise has been updated successfully","reponse"=>$devise, "status"=>200],200);
     }
 
     /**
@@ -75,11 +75,11 @@ class DeviseController extends Controller
     {
         //
         $devise =  Devises::FindOrFail($id);
-        if(!$devise) return response()->json(["error"=> "devises not found", "status"=> 404]);
+        if(!$devise) return response()->json(["error"=> "devises not found", "status"=> 404],404);
 
         $devise-> delete();
 
-        return response()->json(["message"=>"devise has been deleted successfully", "status"=>200]);
+        return response()->json(["message"=>"devise has been deleted successfully", "status"=>200],200);
 
     }
 }

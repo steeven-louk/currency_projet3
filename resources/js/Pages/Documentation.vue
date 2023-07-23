@@ -97,12 +97,14 @@ Axios : Bibliothèque JavaScript pour effectuer des appels API HTTP depuis le fr
     <h1>Documentation de l'API :</h1>
 
     <h2>URL de l'API REST :</h2>
-
+<code>
+    
     <ul>
         <li>/api/paires (GET) : Obtenir la liste des paires de devises.</li>
         <li>/api/paires/{id} (GET) : Obtenir le taux de change d'une paire de devises spécifique.</li>
         <li>/api/paires/{id} (PUT) : Mettre à jour le taux de change d'une paire de devises.</li>
     </ul>
+</code>
 
 
     <p>Fonctionnalité : L'API permet aux utilisateurs d'obtenir des informations sur les paires de devises et leurs taux de

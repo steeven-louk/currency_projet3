@@ -19807,6 +19807,7 @@ __webpack_require__.r(__webpack_exports__);
     var devises = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)([]);
     var paires = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)([]);
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
+    var showUpdateModal = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
     var showPaireModal = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
     var deviseName = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)("");
     var device_1 = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)("");
@@ -19824,6 +19825,10 @@ __webpack_require__.r(__webpack_exports__);
     };
     var deleteDevise = function deleteDevise(id) {
       (0,_admin_services_js__WEBPACK_IMPORTED_MODULE_4__.deleteDevises)(id);
+      (0,_admin_services_js__WEBPACK_IMPORTED_MODULE_4__.getDevises)(devises);
+    };
+    var updateDevise = function updateDevise(id) {
+      (0,_admin_services_js__WEBPACK_IMPORTED_MODULE_4__.updateDevises)(id);
       (0,_admin_services_js__WEBPACK_IMPORTED_MODULE_4__.getDevises)(devises);
     };
     (0,_admin_services_js__WEBPACK_IMPORTED_MODULE_4__.getDevises)(devises);
@@ -19860,6 +19865,7 @@ __webpack_require__.r(__webpack_exports__);
       devises: devises,
       paires: paires,
       showModal: showModal,
+      showUpdateModal: showUpdateModal,
       showPaireModal: showPaireModal,
       deviseName: deviseName,
       device_1: device_1,
@@ -19869,6 +19875,7 @@ __webpack_require__.r(__webpack_exports__);
       addDevise: addDevise,
       addPaire: addPaire,
       deleteDevise: deleteDevise,
+      updateDevise: updateDevise,
       get axios() {
         return (axios__WEBPACK_IMPORTED_MODULE_0___default());
       },
@@ -21040,37 +21047,46 @@ var _hoisted_15 = {
   "class": "bg-white divide-y divide-gray-200"
 };
 var _hoisted_16 = {
-  "class": "px-6 py-4 whitespace-nowrap"
+  "class": "modal"
 };
-var _hoisted_17 = {
-  "class": "px-6 py-4 whitespace-nowrap"
-};
-var _hoisted_18 = {
-  "class": "px-6 py-4 whitespace-nowrap"
-};
+var _hoisted_17 = ["onSubmit"];
+var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    type: "submit",
+    "class": "bg-green-800 text-white font-bold uppercase mx-auto w-[15em] p-2 mt-3 rounded-md"
+  }, "update", -1 /* HOISTED */);
+});
 var _hoisted_19 = {
+  "class": "px-6 py-4 whitespace-nowrap"
+};
+var _hoisted_20 = {
+  "class": "px-6 py-4 whitespace-nowrap"
+};
+var _hoisted_21 = {
+  "class": "px-6 py-4 whitespace-nowrap"
+};
+var _hoisted_22 = {
   "class": "flex space-x-4"
 };
-var _hoisted_20 = ["onClick"];
-var _hoisted_21 = ["onClick"];
-var _hoisted_22 = {
+var _hoisted_23 = ["onClick"];
+var _hoisted_24 = {
   "class": "p-6 mt-12 bg-white border-b w-[100%] max-w-2xl border-gray-500"
 };
-var _hoisted_23 = {
+var _hoisted_25 = {
   "class": "header flex mb-5"
 };
-var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
     "class": "text-[1.2rem] font-semibold"
   }, "Listes des paires", -1 /* HOISTED */);
 });
-var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
 });
-var _hoisted_26 = {
+var _hoisted_28 = {
   "class": "min-w-full"
 };
-var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
     "class": "bg-gray-50"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
@@ -21087,14 +21103,8 @@ var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
     "class": "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
   }, " Actions ")])], -1 /* HOISTED */);
 });
-var _hoisted_28 = {
-  "class": "bg-white divide-y divide-gray-200"
-};
-var _hoisted_29 = {
-  "class": "px-6 py-4 whitespace-nowrap"
-};
 var _hoisted_30 = {
-  "class": "px-6 py-4 whitespace-nowrap"
+  "class": "bg-white divide-y divide-gray-200"
 };
 var _hoisted_31 = {
   "class": "px-6 py-4 whitespace-nowrap"
@@ -21109,10 +21119,16 @@ var _hoisted_34 = {
   "class": "px-6 py-4 whitespace-nowrap"
 };
 var _hoisted_35 = {
+  "class": "px-6 py-4 whitespace-nowrap"
+};
+var _hoisted_36 = {
+  "class": "px-6 py-4 whitespace-nowrap"
+};
+var _hoisted_37 = {
   "class": "flex space-x-4"
 };
-var _hoisted_36 = ["onClick"];
-var _hoisted_37 = ["onClick"];
+var _hoisted_38 = ["onClick"];
+var _hoisted_39 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Dashboard"
@@ -21141,8 +21157,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         "class": "font-bold ml-auto p-2 bg-red-500 rounded block cursor-pointer"
       }, "X"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-        onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-          return $setup.addPaires(_ctx.devise_1, _ctx.devise_2, $setup.taux);
+        onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+          return $setup.addPaires && $setup.addPaires.apply($setup, arguments);
         }, ["prevent"])),
         "class": "flex flex-col gap-4 mx-auto align-center justify-center"
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -21166,7 +21182,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         name: "devise_2"
       }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.devise_2]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "number",
+        type: "text",
         placeholder: "Taux",
         required: "",
         "class": "form-input",
@@ -21182,36 +21198,54 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, "add devises")]), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.devises.response, function (devise) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
           key: devise.id
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(devise.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(devise.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+          onClick: _cache[8] || (_cache[8] = function ($event) {
+            return $setup.showUpdateModal = false;
+          }),
+          "class": "font-bold ml-auto p-2 text-white block cursor-pointer"
+        }, "X"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+          onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+            return $setup.updateDevise(devise.id);
+          }, ["prevent"]),
+          "class": "flex flex-col mx-auto align-center mt-4 justify-center"
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+          type: "text",
+          placeholder: "update devise",
+          "class": "form-input",
+          "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+            return $setup.deviseName = $event;
+          }),
+          name: "name"
+        }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.deviseName]]), _hoisted_18], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_17)], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.showUpdateModal]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(devise.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(devise.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
             return $setup.deleteDevise(devise.id);
           }, ["prevent"]),
           "class": "px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300"
-        }, " delete ", 8 /* PROPS */, _hoisted_20), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-          onClick: function onClick($event) {
-            return $setup.updateDevises(devise.id);
-          },
+        }, " delete ", 8 /* PROPS */, _hoisted_23), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+          onClick: _cache[10] || (_cache[10] = function ($event) {
+            return $setup.showUpdateModal = true;
+          }),
           "class": "px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300"
-        }, " update ", 8 /* PROPS */, _hoisted_21)])])]);
-      }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[8] || (_cache[8] = function ($event) {
+        }, " update ")])])]);
+      }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        onClick: _cache[11] || (_cache[11] = function ($event) {
           return $setup.showPaireModal = true;
         }),
         "class": "bg-green-800 text-white font-bold uppercase ml-auto w-[15em] p-2 rounded-md"
-      }, "add paires")]), _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_28, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.paires.response, function (paire) {
+      }, "add paires")]), _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_30, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.paires.response, function (paire) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
           key: paire.id
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.devise_1), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.devise_2), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.taux), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.conversionNumber), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.devise_1), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.devise_2), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.taux), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(paire.conversionNumber), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
             return $setup.deletePaires(paire.id);
           }, ["prevent"]),
           "class": "px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300"
-        }, " delete ", 8 /* PROPS */, _hoisted_36), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        }, " delete ", 8 /* PROPS */, _hoisted_38), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: function onClick($event) {
             return _ctx.updatePaires(paire.id);
           },
           "class": "px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300"
-        }, " update ", 8 /* PROPS */, _hoisted_37)])])]);
+        }, " update ", 8 /* PROPS */, _hoisted_39)])])]);
       }), 128 /* KEYED_FRAGMENT */))])])])])])])];
     }),
 
@@ -21240,7 +21274,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Côté API (back), nous utiliserons Laravel pour développer l'API REST. Laravel est un framework PHP populaire qui offre des fonctionnalités robustes pour créer des applications Web sécurisées et évolutives. Nous utiliserons également MySQL comme base de données pour stocker les paires de devises et leurs taux. ", -1 /* HOISTED */);
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Evaluation du temps de travail :", -1 /* HOISTED */);
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Voici une estimation du temps de travail pour chaque grand poste de développement :", -1 /* HOISTED */);
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h2>Liste fonctionnelle :</h2><p> Les fonctionnalités à développer sont les suivantes :</p><h2>Administration (Frontend) :</h2><ul><li>Authentification des administrateurs</li><li>Gestion des paires de devises (ajout, modification, suppression)</li><li>Gestion des taux de change (ajout, modification)</li><li>Affichage des statistiques des taux de change</li></ul><h2>API (Backend) :</h2><ul><li>Obtenir la liste des paires de devises</li><li>Obtenir le taux de change d&#39;une paire de devises spécifique</li><li>Mettre à jour le taux de change d&#39;une paire de devises</li></ul><h2>Recettage :</h2><p> Le tableau de recettage indiquera si chaque fonctionnalité est opérationnelle ou non opérationnelle :</p><table><thead><th>Fonctionnalité</th><th>Statut</th></thead><tbody><tr><td>Authentification des administrateurs</td><td>Opérationnelle</td></tr><tr><td>Gestion des paires de devises</td><td>Opérationnelle</td></tr><tr><td>Gestion des taux de change</td><td>Opérationnelle</td></tr><tr><td>Affichage des statistiques</td><td>Non opérationnelle</td></tr></tbody></table><h2>Diagramme de la base de données :</h2><h1>Documentation de l&#39;API :</h1><h2>URL de l&#39;API REST :</h2><ul><li>/api/paires (GET) : Obtenir la liste des paires de devises.</li><li>/api/paires/{id} (GET) : Obtenir le taux de change d&#39;une paire de devises spécifique.</li><li>/api/paires/{id} (PUT) : Mettre à jour le taux de change d&#39;une paire de devises.</li></ul><p>Fonctionnalité : L&#39;API permet aux utilisateurs d&#39;obtenir des informations sur les paires de devises et leurs taux de change.</p><p>Données retournées : Les réponses de l&#39;API seront au format JSON et contiendront les informations demandées, telles que les paires de devises et leurs taux de change.</p><p>Messages d&#39;erreur possibles : L&#39;API retournera des messages d&#39;erreur avec les codes d&#39;erreur appropriés en cas de demande invalide ou de problème avec le serveur.</p><h2>Adresse Github :</h2><code>https://github.com/steeven-louk/currency_projet3</code>", 18);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h2>Liste fonctionnelle :</h2><p> Les fonctionnalités à développer sont les suivantes :</p><h2>Administration (Frontend) :</h2><ul><li>Authentification des administrateurs</li><li>Gestion des paires de devises (ajout, modification, suppression)</li><li>Gestion des taux de change (ajout, modification)</li><li>Affichage des statistiques des taux de change</li></ul><h2>API (Backend) :</h2><ul><li>Obtenir la liste des paires de devises</li><li>Obtenir le taux de change d&#39;une paire de devises spécifique</li><li>Mettre à jour le taux de change d&#39;une paire de devises</li></ul><h2>Recettage :</h2><p> Le tableau de recettage indiquera si chaque fonctionnalité est opérationnelle ou non opérationnelle :</p><table><thead><th>Fonctionnalité</th><th>Statut</th></thead><tbody><tr><td>Authentification des administrateurs</td><td>Opérationnelle</td></tr><tr><td>Gestion des paires de devises</td><td>Opérationnelle</td></tr><tr><td>Gestion des taux de change</td><td>Opérationnelle</td></tr><tr><td>Affichage des statistiques</td><td>Non opérationnelle</td></tr></tbody></table><h2>Diagramme de la base de données :</h2><h1>Documentation de l&#39;API :</h1><h2>URL de l&#39;API REST :</h2><code><ul><li>/api/paires (GET) : Obtenir la liste des paires de devises.</li><li>/api/paires/{id} (GET) : Obtenir le taux de change d&#39;une paire de devises spécifique.</li><li>/api/paires/{id} (PUT) : Mettre à jour le taux de change d&#39;une paire de devises.</li></ul></code><p>Fonctionnalité : L&#39;API permet aux utilisateurs d&#39;obtenir des informations sur les paires de devises et leurs taux de change.</p><p>Données retournées : Les réponses de l&#39;API seront au format JSON et contiendront les informations demandées, telles que les paires de devises et leurs taux de change.</p><p>Messages d&#39;erreur possibles : L&#39;API retournera des messages d&#39;erreur avec les codes d&#39;erreur appropriés en cas de demande invalide ou de problème avec le serveur.</p><h2>Adresse Github :</h2><code>https://github.com/steeven-louk/currency_projet3</code>", 18);
 function render(_ctx, _cache) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, _hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Vue.js : Framework JavaScript moderne et réactif pour créer une interface utilisateur interactive et dynamique. Tailwind CSS : Framework CSS utilitaire pour faciliter la conception et le stylisme de l'interface utilisateur. Laravel Breeze : Package Laravel pour la génération rapide d'un système d'authentification (login, register, reset password, etc.). Axios : Bibliothèque JavaScript pour effectuer des appels API HTTP depuis le frontend vers le backend. "), _hoisted_4, _hoisted_5, _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" \r\n    Backend (API) : 15 jours\r\n    Base de données (conception et mise en œuvre) : 5 jours\r\n    Tests et débogage : 5 jours\r\n    Documentation : 2 jours\r\n    Total : 37 jours "), _hoisted_7], 64 /* STABLE_FRAGMENT */);
 }
@@ -21301,7 +21335,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var addDevises = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(deviseName, showModal) {
-    var _console, _console2, _console3, data, _console4;
+    var _console, data, _console2;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -21312,25 +21346,20 @@ var addDevises = /*#__PURE__*/function () {
           });
         case 3:
           data = _context.sent;
-          /* eslint-disable */(_console = console).log.apply(_console, _toConsumableArray(oo_oo("81472c84_0", data)));
+          /* eslint-disable */(_console = console).log.apply(_console, _toConsumableArray(oo_oo("b1e63a84_0", data)));
           deviseName.value = "";
           showModal.value = false;
-          /* eslint-disable */
-          (_console2 = console).log.apply(_console2, _toConsumableArray(oo_oo("81472c84_1", deviseName)));
-          /* eslint-disable */
-          (_console3 = console).log.apply(_console3, _toConsumableArray(oo_oo("81472c84_2", data)));
-          // getDevises();
-          _context.next = 14;
+          _context.next = 12;
           break;
-        case 11:
-          _context.prev = 11;
+        case 9:
+          _context.prev = 9;
           _context.t0 = _context["catch"](0);
-          /* eslint-disable */(_console4 = console).log.apply(_console4, _toConsumableArray(oo_oo("81472c84_3", _context.t0)));
-        case 14:
+          /* eslint-disable */(_console2 = console).log.apply(_console2, _toConsumableArray(oo_oo("b1e63a84_1", _context.t0)));
+        case 12:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 11]]);
+    }, _callee, null, [[0, 9]]);
   }));
   return function addDevises(_x, _x2) {
     return _ref.apply(this, arguments);
@@ -21338,7 +21367,7 @@ var addDevises = /*#__PURE__*/function () {
 }();
 var addPaires = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(devise_1, devise_2, taux, showPaireModal) {
-    var _console5, data, _console6;
+    var _console3, data, _console4;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
@@ -21351,18 +21380,17 @@ var addPaires = /*#__PURE__*/function () {
           });
         case 3:
           data = _context2.sent;
-          /* eslint-disable */(_console5 = console).log.apply(_console5, _toConsumableArray(oo_oo("81472c84_4", 'data', data)));
-          taux.value = "";
+          /* eslint-disable */(_console3 = console).log.apply(_console3, _toConsumableArray(oo_oo("b1e63a84_2", 'data', data)));
           devise_1.value = "";
           devise_2.value = "";
+          taux.value = "";
           showPaireModal.value = false;
-          // getPaires();
           _context2.next = 14;
           break;
         case 11:
           _context2.prev = 11;
           _context2.t0 = _context2["catch"](0);
-          /* eslint-disable */(_console6 = console).log.apply(_console6, _toConsumableArray(oo_oo("81472c84_5", _context2.t0)));
+          /* eslint-disable */(_console4 = console).log.apply(_console4, _toConsumableArray(oo_oo("b1e63a84_3", _context2.t0)));
         case 14:
         case "end":
           return _context2.stop();
@@ -21375,7 +21403,7 @@ var addPaires = /*#__PURE__*/function () {
 }();
 var getDevises = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(devises) {
-    var _yield$axios, data, _console7;
+    var _yield$axios, data, _console5;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
@@ -21391,7 +21419,7 @@ var getDevises = /*#__PURE__*/function () {
         case 8:
           _context3.prev = 8;
           _context3.t0 = _context3["catch"](0);
-          /* eslint-disable */(_console7 = console).log.apply(_console7, _toConsumableArray(oo_oo("81472c84_6", _context3.t0)));
+          /* eslint-disable */(_console5 = console).log.apply(_console5, _toConsumableArray(oo_oo("b1e63a84_4", _context3.t0)));
         case 11:
         case "end":
           return _context3.stop();
@@ -21404,7 +21432,7 @@ var getDevises = /*#__PURE__*/function () {
 }();
 var getPaires = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(paires) {
-    var _yield$axios2, data, _console8;
+    var _yield$axios2, data, _console6;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
@@ -21420,7 +21448,7 @@ var getPaires = /*#__PURE__*/function () {
         case 8:
           _context4.prev = 8;
           _context4.t0 = _context4["catch"](0);
-          /* eslint-disable */(_console8 = console).log.apply(_console8, _toConsumableArray(oo_oo("81472c84_7", _context4.t0)));
+          /* eslint-disable */(_console6 = console).log.apply(_console6, _toConsumableArray(oo_oo("b1e63a84_5", _context4.t0)));
         case 11:
         case "end":
           return _context4.stop();
@@ -21433,7 +21461,7 @@ var getPaires = /*#__PURE__*/function () {
 }();
 var deleteDevises = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id) {
-    var _console9;
+    var _console7;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) switch (_context5.prev = _context5.next) {
         case 0:
@@ -21447,7 +21475,7 @@ var deleteDevises = /*#__PURE__*/function () {
         case 6:
           _context5.prev = 6;
           _context5.t0 = _context5["catch"](0);
-          /* eslint-disable */(_console9 = console).log.apply(_console9, _toConsumableArray(oo_oo("81472c84_8", _context5.t0)));
+          /* eslint-disable */(_console7 = console).log.apply(_console7, _toConsumableArray(oo_oo("b1e63a84_6", _context5.t0)));
         case 9:
         case "end":
           return _context5.stop();
@@ -21460,7 +21488,7 @@ var deleteDevises = /*#__PURE__*/function () {
 }();
 var updateDevises = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(id) {
-    var _console10, _yield$axios$put, data, _console11;
+    var _console8, _yield$axios$put, data, _console9;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) switch (_context6.prev = _context6.next) {
         case 0:
@@ -21470,21 +21498,20 @@ var updateDevises = /*#__PURE__*/function () {
         case 3:
           _yield$axios$put = _context6.sent;
           data = _yield$axios$put.data;
-          setTimeout(alertMsg.value = data.message, 3000);
-          getPaires();
+          // getPaires();
           /* eslint-disable */
-          (_console10 = console).log.apply(_console10, _toConsumableArray(oo_oo("81472c84_9", data)));
-          _context6.next = 13;
+          (_console8 = console).log.apply(_console8, _toConsumableArray(oo_oo("b1e63a84_7", data)));
+          _context6.next = 11;
           break;
-        case 10:
-          _context6.prev = 10;
+        case 8:
+          _context6.prev = 8;
           _context6.t0 = _context6["catch"](0);
-          /* eslint-disable */(_console11 = console).log.apply(_console11, _toConsumableArray(oo_oo("81472c84_10", _context6.t0)));
-        case 13:
+          /* eslint-disable */(_console9 = console).log.apply(_console9, _toConsumableArray(oo_oo("b1e63a84_8", _context6.t0)));
+        case 11:
         case "end":
           return _context6.stop();
       }
-    }, _callee6, null, [[0, 10]]);
+    }, _callee6, null, [[0, 8]]);
   }));
   return function updateDevises(_x10) {
     return _ref6.apply(this, arguments);
@@ -21492,7 +21519,7 @@ var updateDevises = /*#__PURE__*/function () {
 }();
 var deletePaires = /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(id, paires) {
-    var _console12, _yield$axios$delete, data, _console13;
+    var _console10, _yield$axios$delete, data, _console11;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) switch (_context7.prev = _context7.next) {
         case 0:
@@ -21505,13 +21532,13 @@ var deletePaires = /*#__PURE__*/function () {
           // setTimeout(alertMsg.value = data.message, 3000);
           getPaires(paires);
           /* eslint-disable */
-          (_console12 = console).log.apply(_console12, _toConsumableArray(oo_oo("81472c84_11", data)));
+          (_console10 = console).log.apply(_console10, _toConsumableArray(oo_oo("b1e63a84_9", data)));
           _context7.next = 12;
           break;
         case 9:
           _context7.prev = 9;
           _context7.t0 = _context7["catch"](0);
-          /* eslint-disable */(_console13 = console).log.apply(_console13, _toConsumableArray(oo_oo("81472c84_12", _context7.t0)));
+          /* eslint-disable */(_console11 = console).log.apply(_console11, _toConsumableArray(oo_oo("b1e63a84_10", _context7.t0)));
         case 12:
         case "end":
           return _context7.stop();
@@ -21524,7 +21551,7 @@ var deletePaires = /*#__PURE__*/function () {
 }();
 var updatePaires = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(id) {
-    var _console14, _yield$axios$put2, data, _console15;
+    var _console12, _yield$axios$put2, data, _console13;
     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
       while (1) switch (_context8.prev = _context8.next) {
         case 0:
@@ -21537,13 +21564,13 @@ var updatePaires = /*#__PURE__*/function () {
           setTimeout(alertMsg.value = data.message, 3000);
           getPaires();
           /* eslint-disable */
-          (_console14 = console).log.apply(_console14, _toConsumableArray(oo_oo("81472c84_13", data)));
+          (_console12 = console).log.apply(_console12, _toConsumableArray(oo_oo("b1e63a84_11", data)));
           _context8.next = 13;
           break;
         case 10:
           _context8.prev = 10;
           _context8.t0 = _context8["catch"](0);
-          /* eslint-disable */(_console15 = console).log.apply(_console15, _toConsumableArray(oo_oo("81472c84_14", _context8.t0)));
+          /* eslint-disable */(_console13 = console).log.apply(_console13, _toConsumableArray(oo_oo("b1e63a84_12", _context8.t0)));
         case 13:
         case "end":
           return _context8.stop();
