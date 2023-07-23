@@ -12,11 +12,10 @@ class Paires extends Model
     protected $fillable =[
         "devise_1",
         "devise_2",
-        "taux"
+        "taux",
+        "conversionNumber"
+
     ];
 
-    public function convertions()
-    {
-        return $this->hasMany(conversion::class);
-    }
+
 }

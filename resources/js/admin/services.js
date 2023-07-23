@@ -1,12 +1,28 @@
 import axios from "axios";
 
-const addDevises = async (deviceName, showModal) => {
+const addDevises = async (deviseName, showModal) => {
     try {
-        const data = await axios.post('/api/device', { name: deviceName.value })
+        const data = await axios.post('/api/devise', { name: deviseName.value })
         console.log(data);
-        deviceName.value = "";
+        deviseName.value = "";
         showModal.value = false;
-        getDevises();
+        console.log(deviseName)
+        console.log(data)
+        // getDevises();
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const addPaires = async (devise_1,devise_2, taux, showPaireModal) => {
+    try {
+        const data = await axios.post('/api/paire', { devise_1: devise_1.value, devise_2: devise_2.value,taux: taux.value})
+        console.log('data',data);
+        taux.value = "";
+        devise_1.value = "";
+        devise_2.value = "";
+        showPaireModal.value = false;
+        // getPaires();
     } catch (error) {
         console.log(error)
     }
@@ -15,9 +31,8 @@ const addDevises = async (deviceName, showModal) => {
 
 const getDevises = async (devises) => {
     try {
-        const { data } = await axios('/api/device')
+        const { data } = await axios('/api/devise')
         devises.value = data;
-        console.log(data)
     } catch (error) {
         console.log(error)
     }
@@ -34,9 +49,8 @@ const getPaires = async (paires) => {
 
 const deleteDevises = async (id) => {
     try {
-        const { data } = await axios.delete('/api/device/' + id);
+      await axios.delete('/api/devise/' + id);
 
-        setTimeout(alertMsg.value = data.message, 3000);
         getDevises();
 
     } catch (error) {
@@ -56,12 +70,12 @@ const updateDevises = async (id) => {
     }
 }
 
-const deletePaires = async (id) => {
+const deletePaires = async (id, paires) => {
     try {
         const { data } = await axios.delete('/api/paire/' + id);
 
-        setTimeout(alertMsg.value = data.message, 3000);
-        getPaires();
+        // setTimeout(alertMsg.value = data.message, 3000);
+        getPaires(paires);
         console.log(data);
     } catch (error) {
         console.log(error);
@@ -80,4 +94,4 @@ const updatePaires = async (id) => {
     }
 }
 
-export  {addDevises, getDevises, getPaires, deleteDevises, deletePaires, updatePaires, updateDevises};
+export  {addDevises, getDevises, getPaires,addPaires, deleteDevises, deletePaires, updatePaires, updateDevises};

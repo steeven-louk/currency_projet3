@@ -40,11 +40,11 @@ class PaireController extends Controller
         $paire = new Paires();
         $paire-> devise_1 =$request->input('devise_1');
         $paire-> devise_2 =$request->input('devise_2');
-        $paire-> taux =$request->input('taux');
+        $paire-> taux = $request->input('taux');
 
         $paire-> save();
         
-        return response()->json(["message"=>"paire has added", $paire, "status"=>201]);
+        return response()->json(["message"=>"paire has added", $paire, "status"=>201],201);
     }
 
    

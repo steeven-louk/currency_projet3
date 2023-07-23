@@ -2,44 +2,40 @@
 import axios from 'axios';
 import BreezeAuthenticatedLayout from '../Layouts/Authenticated.vue';
 import { Head } from '@inertiajs/inertia-vue3';
-import { ref, watch } from 'vue';
-import {getDevises , getPaires, addDevises, deleteDevises, updateDevises, deletePaires, deletePaires} from "../admin/services.js"
+import { ref, watch , watchEffect} from 'vue';
+import {getDevises , getPaires,addPaires, addDevises, deleteDevises, updateDevises, deletePaires} from "../admin/services.js"
 const devises = ref([]);
 const paires = ref([]);
 const showModal = ref(false);
-const deviceName = ref("");
+const showPaireModal = ref(false);
+const deviseName = ref("");
+const device_1 = ref("");
+const device_2 = ref("");
+const taux = ref("");
 const alertMsg = ref("");
 
 
+
+
+    getPaires(paires);
+ 
+const addDevise =()=>{
+    addDevises(deviseName, showModal)
+    getDevises(devises);
+
+}
+const addPaire =()=>{
+    addPaires(devise_1,devise_2, taux, showPaireModal)
+    getPaires(paires);
+
+}
+const deleteDevise = (id)=>{
+    deleteDevises(id);
+    getDevises(devises);
+
+}
 getDevises(devises);
 
-getPaires(paires);
-
-// const addDevises = async () => {
-//     try {
-//         const data = await axios.post('/api/device', { name: deviceName.value })
-//         console.log(data);
-//         deviceName.value = "";
-//         showModal.value = false;
-//         getDevices();
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-
-
-
-// const deleteDevises = async (id) => {
-//     try {
-//         const { data } = await axios.delete('/api/device/' + id);
-
-//         setTimeout(alertMsg.value = data.message, 3000);
-//         getDevices();
-
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
 
 
 // const updateDevises = async (id) => {
@@ -54,17 +50,7 @@ getPaires(paires);
 //     }
 // }
 
-// const deletePaires = async (id) => {
-//     try {
-//         const { data } = await axios.delete('/api/paire/' + id);
 
-//         setTimeout(alertMsg.value = data.message, 3000);
-//         getPaires();
-//         console.log(data);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
 
 // const updatePaires = async (id) => {
 //     try {
@@ -90,18 +76,14 @@ getPaires(paires);
     <Head title="Dashboard" />
 
     <BreezeAuthenticatedLayout>
-        <!-- <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                dashboard
-            </h2>
-        </template> -->
+
 
         <div class="py-12 relative">
             <div class="modal" v-show="showModal">
                 <span @click="showModal = false" class="font-bold ml-auto p-2 text-white  block cursor-pointer">X</span>
-                <form @submit.prevent="addDevises(deviceName, showModal)" class="flex flex-col mx-auto align-center mt-4 justify-center">
+                <form @submit.prevent="addDevise" class="flex flex-col mx-auto align-center mt-4 justify-center">
 
-                    <input type="text" placeholder="add devise" class="form-input" v-model="deviceName" value="name"
+                    <input type="text" placeholder="add devise" class="form-input" v-model="deviseName" 
                         name="name">
                     <button type="submit"
                         class="bg-green-800 text-white font-bold uppercase mx-auto w-[15em] p-2 mt-3 rounded-md">add</button>
@@ -109,15 +91,15 @@ getPaires(paires);
                 </form>
             </div>
 
-            <div class="modal" v-show="showModal">
-                <button type="button" @click="showModal = false" class="font-bold ml-auto p-2 bg-red-500 rounded block cursor-pointer">X</button>
-                <form @submit.prevent="addDevises" class="flex flex-col gap-4 mx-auto align-center justify-center">
+            <div class="modal" v-show="showPaireModal">
+                <button type="button" @click="showPaireModal = false" class="font-bold ml-auto p-2 bg-red-500 rounded block cursor-pointer">X</button>
+                <form @submit.prevent="addPaires(devise_1,devise_2,taux)" class="flex flex-col gap-4 mx-auto align-center justify-center">
 
-                    <input type="text" placeholder="Devise 1" required class="form-input" v-model="deviceName" value="devise 1"
+                    <input type="text" max="3" placeholder="Devise 1" required class="form-input" v-model="devise_1" 
                         name="devise_1">
-                        <input type="text" placeholder="Devise 2" required class="form-input" v-model="deviceName" value="devise 2"
+                        <input type="text" max="3" placeholder="Devise 2" required class="form-input" v-model="devise_2"
                         name="devise_2">
-                        <input type="number" max="3" placeholder="Taux" required class="form-input" v-model="deviceName" value="taux"
+                        <input type="number" placeholder="Taux" required class="form-input" v-model="taux"
                         name="taux">
                     <button type="submit"
                         class="bg-green-800 text-white font-bold uppercase mx-auto w-[15em] p-2 mt-3 rounded-md">add paire</button>
@@ -155,16 +137,16 @@ getPaires(paires);
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                <tr v-for="devise in devises" :key="devise.id">
+                                <tr v-for="devise in devises.response" :key="devise.id">
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        {{ devise?.id }}
+                                        {{ devise.id }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        {{ devise?.name }}
+                                        {{ devise.name }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex space-x-4">
-                                            <button @click.prevent="deleteDevises(devise.id)"
+                                            <button @click.prevent="deleteDevise(devise.id)"
                                                 class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300">
                                                 delete
                                             </button>
@@ -182,7 +164,7 @@ getPaires(paires);
                     <div class="p-6 mt-12   bg-white border-b w-[100%] max-w-2xl border-gray-500">
                         <div class="header flex mb-5">
                             <h3 class="text-[1.2rem] font-semibold">Listes des paires</h3>
-                            <button class="bg-green-800 text-white font-bold uppercase ml-auto w-[15em] p-2 rounded-md">add
+                            <button @click="showPaireModal = true" class="bg-green-800 text-white font-bold uppercase ml-auto w-[15em] p-2 rounded-md">add
                                 paires</button>
                         </div>
                         <hr>
@@ -208,6 +190,10 @@ getPaires(paires);
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Count
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Actions
                                     </th>
                                 </tr>
@@ -225,6 +211,9 @@ getPaires(paires);
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ paire.taux }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        {{ paire.conversionNumber }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex space-x-4">

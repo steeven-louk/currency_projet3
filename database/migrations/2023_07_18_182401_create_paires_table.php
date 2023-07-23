@@ -17,7 +17,8 @@ class CreatePairesTable extends Migration
             $table->id();
             $table->string('devise_1', 3);
             $table->string('devise_2', 3);
-            $table->decimal('taux',8,4);
+            $table->float('taux',8,6);
+            $table->unsignedInteger('conversionNumber')->default(0);
             $table->timestamps();
         });
     }

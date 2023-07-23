@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\conversion;
 use App\Models\Paires;
+use Error;
 use Illuminate\Http\Request;
 
 class ConversionController extends Controller
@@ -15,22 +15,15 @@ class ConversionController extends Controller
      */
     public function index($devise_1, $devise_2, $amount)
     {
-        //
+       try {
         $devise = Paires::where('devise_1',$devise_1)->where('devise_2',$devise_2)->first();
-        $conversionPaire = conversion::where('paire_id',$devise)->get();
-        dd($conversionPaire);
-        if(!$devise || !$conversionPaire) return response()->json(['error'=>"Paires de devise non trouvée"], 404);
         
-        if(!$conversionPaire){
-
-            $conversion = new conversion();
-            $conversion->paire_id = $devise->id;
-            $conversion->save();
-        }
-        $conversionPaire->nombre_conversions += 1;
-
-
+        if(!$devise) return response()->json(['error'=>"Paires de devise non trouvee"], 404);
+        
+        
         $result = $amount * $devise->taux;
+        $devise->increment('conversionNumber');
+
         $data = [
             'devise_1' => $devise_1,
             'devise_2' => $devise_2,
@@ -40,10 +33,13 @@ class ConversionController extends Controller
    ] ;
         return response()->json(
         [
-            'status'=> 200,
-            'response'=> $data
+            'response'=> $data,
+            'status'=> 200
             
         ],200);
+       } catch (Error $e) {
+        response()->json($e,500);
+       }
     
     }
 
@@ -52,20 +48,31 @@ class ConversionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  $getConversionCount
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getConversionCount($devise_1, $devise_2)
     {
-        //
+        try {
+            {
+                $devises = Paires::where('devise_1', $devise_1)->where('devise_2', $devise_2)->first();
+
+                if ($devises) {
+                    return response()->json([
+                        'devise_1' => $devise_1,
+                        'devise_2' => $devise_2,
+                        'requestCount' => $devises->conversionNumber,
+                    ]);
+                } else {
+                    return response()->json([
+                        'message' => 'La paire de devises n\'existe pas.',
+                    ], 404); // Code HTTP 404 pour "Not Found" (introuvable)
+                }
+            }
+        } catch (Error $e) {
+            response()->json($e, 500);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
   
 }

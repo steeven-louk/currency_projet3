@@ -15,7 +15,8 @@ class DeviseController extends Controller
     public function index()
     {
         $data = Devises::all();
-        return response()->json([ $data, "status"=>200]);
+        return response()->json(["response" => $data, "status"=> 200],200);
+        //
     }
 
 
@@ -36,7 +37,7 @@ class DeviseController extends Controller
         $devise->name = $request->input('name');
         $devise->save();
 
-        return response()->json(["message"=>"devise has been created",$devise, "status"=> 201]);
+        return response()->json(["message"=>"devise has been created",$devise, "status"=> 201], 201);
     }
 
 
