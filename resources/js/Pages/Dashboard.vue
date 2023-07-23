@@ -3,98 +3,86 @@ import axios from 'axios';
 import BreezeAuthenticatedLayout from '../Layouts/Authenticated.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import { ref, watch } from 'vue';
-
+import {getDevises , getPaires, addDevises, deleteDevises, updateDevises, deletePaires, deletePaires} from "../admin/services.js"
 const devises = ref([]);
 const paires = ref([]);
 const showModal = ref(false);
 const deviceName = ref("");
 const alertMsg = ref("");
 
-const getDevices = async () => {
-    try {
-        const { data } = await axios('/api/device')
-        devises.value = data;
-    } catch (error) {
-        console.log(error)
-    }
-}
 
-const getPaires = async () => {
-    try {
-        const { data } = await axios('/api/paire')
-        paires.value = data;
-    } catch (error) {
-        console.log(error)
-    }
-}
-getPaires();
+getDevises(devises);
 
-const addDevises = async () => {
-    try {
-        const data = await axios.post('/api/device', { name: deviceName.value })
-        console.log(data);
-        deviceName.value = "";
-        showModal.value = false;
-        getDevices();
-    } catch (error) {
-        console.log(error)
-    }
-}
+getPaires(paires);
 
-const deleteDevises = async (id) => {
-    try {
-        const { data } = await axios.delete('/api/device/' + id);
-
-        setTimeout(alertMsg.value = data.message, 3000);
-        getDevices();
-
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-
-const updateDevises = async (id) => {
-    try {
-        const { data } = await axios.put('/api/paire/' + id);
-
-        setTimeout(alertMsg.value = data.message, 3000);
-        getPaires();
-        console.log(data);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-const deletePaires = async (id) => {
-    try {
-        const { data } = await axios.delete('/api/paire/' + id);
-
-        setTimeout(alertMsg.value = data.message, 3000);
-        getPaires();
-        console.log(data);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-const updatePaires = async (id) => {
-    try {
-        const { data } = await axios.put('/api/paire/' + id);
-
-        setTimeout(alertMsg.value = data.message, 3000);
-        getPaires();
-        console.log(data);
-    } catch (error) {
-        console.log(error);
-    }
-}
+// const addDevises = async () => {
+//     try {
+//         const data = await axios.post('/api/device', { name: deviceName.value })
+//         console.log(data);
+//         deviceName.value = "";
+//         showModal.value = false;
+//         getDevices();
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 
 
-watch(() => {
-    getDevices();
-});
+// const deleteDevises = async (id) => {
+//     try {
+//         const { data } = await axios.delete('/api/device/' + id);
+
+//         setTimeout(alertMsg.value = data.message, 3000);
+//         getDevices();
+
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+
+// const updateDevises = async (id) => {
+//     try {
+//         const { data } = await axios.put('/api/paire/' + id);
+
+//         setTimeout(alertMsg.value = data.message, 3000);
+//         getPaires();
+//         console.log(data);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+// const deletePaires = async (id) => {
+//     try {
+//         const { data } = await axios.delete('/api/paire/' + id);
+
+//         setTimeout(alertMsg.value = data.message, 3000);
+//         getPaires();
+//         console.log(data);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+// const updatePaires = async (id) => {
+//     try {
+//         const { data } = await axios.put('/api/paire/' + id);
+
+//         setTimeout(alertMsg.value = data.message, 3000);
+//         getPaires();
+//         console.log(data);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+
+
+// watch(() => {
+//     getDevices();
+// });
 
 </script>
 
@@ -102,16 +90,16 @@ watch(() => {
     <Head title="Dashboard" />
 
     <BreezeAuthenticatedLayout>
-        <template #header>
+        <!-- <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 dashboard
             </h2>
-        </template>
+        </template> -->
 
         <div class="py-12 relative">
             <div class="modal" v-show="showModal">
                 <span @click="showModal = false" class="font-bold ml-auto p-2 text-white  block cursor-pointer">X</span>
-                <form @submit.prevent="addDevises" class="flex flex-col mx-auto align-center mt-4 justify-center">
+                <form @submit.prevent="addDevises(deviceName, showModal)" class="flex flex-col mx-auto align-center mt-4 justify-center">
 
                     <input type="text" placeholder="add devise" class="form-input" v-model="deviceName" value="name"
                         name="name">
@@ -169,10 +157,10 @@ watch(() => {
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr v-for="devise in devises" :key="devise.id">
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        {{ devise.id }}
+                                        {{ devise?.id }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        {{ devise.name }}
+                                        {{ devise?.name }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex space-x-4">

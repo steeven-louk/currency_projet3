@@ -26,14 +26,19 @@ const submit = () => {
 </script>
 
 <template>
+    <header class="w-max-screen fixed top-0 ml-auto flex">
+           <Link href="documentation" class="text-white block ml-auto text-end font-bold cursor-pointer hover:text-gray-50 underline-2">
+            Documentation
+        </Link>
+    </header>
     <BreezeGuestLayout  class="bg-gray-800">
         <Head title="Log in" />
-
         <BreezeValidationErrors class="mb-4" />
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
+
 
         <form @submit.prevent="submit">
             <div>

@@ -17,8 +17,9 @@ class ConversionController extends Controller
     {
         //
         $devise = Paires::where('devise_1',$devise_1)->where('devise_2',$devise_2)->first();
-        $conversionPaire = conversion::find($devise->id);
-        if(!$devise) return response()->json(['error'=>"Paires de devise non trouvée"], 404);
+        $conversionPaire = conversion::where('paire_id',$devise)->get();
+        dd($conversionPaire);
+        if(!$devise || !$conversionPaire) return response()->json(['error'=>"Paires de devise non trouvée"], 404);
         
         if(!$conversionPaire){
 
