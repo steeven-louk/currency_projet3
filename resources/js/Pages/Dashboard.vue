@@ -3,7 +3,7 @@ import BreezeAuthenticatedLayout from '../Layouts/Authenticated.vue';
 import axios from 'axios';
 import { Head } from '@inertiajs/inertia-vue3';
 
-import { ref, watch , watchEffect} from 'vue';
+import { ref,  watch , watchEffect} from 'vue';
 
 import {getDevises , getPaires,addPaires, addDevises, deleteDevises, updateDevises, deletePaires} from "../admin/services.js"
 
@@ -15,10 +15,9 @@ const showUpdateModal = ref(false);
 const showPaireModal = ref(false);
 
 const deviseName = ref("");
-const device_1 = ref("");
-const device_2 = ref("");
+const devise_1 = ref("");
+const devise_2 = ref("");
 const taux = ref("");
-const alertMsg = ref("");
 
 
 getPaires(paires);
@@ -34,10 +33,24 @@ const addPaire =()=>{
     getPaires(paires);//actualisation de la liste des paires
 
 }
-const deleteDevise = (id)=>{
-    deleteDevises(id);
-    getDevises(devises);
 
+const deletePaire =async(id)=>{
+    const confirmation = confirm('Êtes-vous sûr de vouloir supprimer cette paire de devises ?');
+    if(confirmation){
+        await deletePaires(id);
+        getPaires(paires);
+        toast.fire({icon: "success", title: "paire removed successfully"});
+
+    }else return ;
+}
+const deleteDevise =async (id)=>{
+    const confirmation = confirm('Êtes-vous sûr de vouloir supprimer cette devise de devises ?');
+    if(confirmation){
+        await deleteDevises(id);
+        getDevises(devises);
+        toast.fire({icon: "success", title: "devise removed successfully"});
+
+    }else return ;
 }
 
 const updateDevise = (id)=>{
@@ -104,7 +117,7 @@ getDevises(devises);
 
             <div class="modal" v-show="showPaireModal">
                 <button type="button" @click="showPaireModal = false" class="font-bold ml-auto p-2 bg-red-500 rounded block cursor-pointer">X</button>
-                <form @submit.prevent="addPaires" class="flex flex-col gap-4 mx-auto align-center justify-center">
+                <form @submit.prevent="addPaire" class="flex flex-col gap-4 mx-auto align-center justify-center">
 
                     <input type="text" max="3" placeholder="Devise 1" required class="form-input" v-model="devise_1" 
                         name="devise_1">
@@ -238,7 +251,7 @@ getDevises(devises);
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex space-x-4">
-                                            <button @click.prevent="deletePaires(paire.id)"
+                                            <button @click.prevent="deletePaire(paire.id)"
                                                 class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300">
                                                 delete
                                             </button>

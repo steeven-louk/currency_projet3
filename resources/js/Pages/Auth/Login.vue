@@ -27,7 +27,7 @@ const submit = () => {
 
 <template>
     <header class="w-max-screen fixed top-0 ml-auto flex">
-           <Link href="documentation" class="text-white block ml-auto text-end font-bold cursor-pointer hover:text-gray-50 underline-2">
+           <Link href="documentation" class="text-white block ml-auto text-end font-bold cursor-pointer hover:text-gray-50 underline underline-offset-2 p-3">
             Documentation
         </Link>
     </header>
