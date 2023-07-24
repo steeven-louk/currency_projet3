@@ -124,6 +124,19 @@ import { Link } from '@inertiajs/inertia-vue3';
         </div>
 
         <div>
+            <h2>migration</h2>
+            <code><i>php artisan migrate</i> (pour faire migrer toute les tables dans la base de donnée)</code>
+           
+            <h2>seeder</h2>
+            <code>
+                <i>php artisan db:seed --class=UserTableSeeder </i>
+                <i>php artisan db:seed --class=DeviseTableSeeder</i>
+                <i>php artisan db:seed --class=PaireTableSeeder</i>
+            </code>
+            
+        </div>
+
+        <div>
             <h2>Diagramme de la base de données :</h2>
 
             <img src="../../../public/assets/currencyModel.png" alt="">

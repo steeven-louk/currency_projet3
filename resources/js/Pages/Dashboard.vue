@@ -82,7 +82,6 @@ const updatePaireModal = (paire) => {
 }
 
 
-
 watchEffect(() => {
     getPaires(paires);
     getDevises(devises);

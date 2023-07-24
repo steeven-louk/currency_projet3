@@ -33,8 +33,8 @@ class PaireController extends Controller
     {
         //
         $request->validate([
-            "devise_1" => "required|max:3",
-            "devise_2" => "required|max:3",
+            "devise_1" => "required|size:3",
+            "devise_2" => "required|size:3",
             "taux" => "required|integer",
         ]);
 
@@ -63,8 +63,8 @@ class PaireController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "devise_1" => "required|max:3",
-            "devise_2" => "required|max:3",
+            "devise_1" => "required|size:3",
+            "devise_2" => "required|size:3",
             "taux" => "required|integer",
         ]);
 
