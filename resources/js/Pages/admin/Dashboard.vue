@@ -1,11 +1,11 @@
 <script setup>
-import BreezeAuthenticatedLayout from '../Layouts/Authenticated.vue';
+import BreezeAuthenticatedLayout from '../../Layouts/Authenticated.vue';
 
 import { Head } from '@inertiajs/inertia-vue3';
 
 import { ref, watchEffect } from 'vue';
 
-import { getDevises, getPaires, addPaires, addDevises, deleteDevises, updateDevises, updatePaires, deletePaires } from "../admin/services.js"
+import { getDevises, getPaires, addPaires, addDevises, deleteDevises, updateDevises, updatePaires, deletePaires } from "./services/services.js"
 
 const devises = ref([]);
 const paires = ref([]);
@@ -325,4 +325,4 @@ watchEffect(() => {
 
 .modal input::placeholder {
     text-transform: capitalize;
-}</style>
+}</style>../admin/services/services.js

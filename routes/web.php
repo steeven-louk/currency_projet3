@@ -25,10 +25,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('admin/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/documentation', function () {
-    return Inertia::render('Documentation');
+    return Inertia::render('admin/Documentation');
 });
 require __DIR__.'/auth.php';

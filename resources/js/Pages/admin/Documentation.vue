@@ -124,6 +124,20 @@ import { Link } from '@inertiajs/inertia-vue3';
         </div>
 
         <div>
+            <h2>authentification</h2>
+
+            <code>
+                <ul>
+                    <li>email : admin@admin.com</li>
+                    <li>password : password</li>
+                </ul>
+            </code>
+            
+        </div>
+
+        <div> <br>
+            <span >Database : currency</span>
+
             <h2>migration</h2>
             <code><i>php artisan migrate</i> (pour faire migrer toute les tables dans la base de donnée)</code>
            
@@ -139,7 +153,7 @@ import { Link } from '@inertiajs/inertia-vue3';
         <div>
             <h2>Diagramme de la base de données :</h2>
 
-            <img src="../../../public/assets/currencyModel.png" alt="">
+            <img src="../../../../public/assets/currencyModel.png" alt="">
         </div>
 
         <div>

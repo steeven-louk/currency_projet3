@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Paires;
 use Error;
+use Illuminate\Http\Request;
 
 class ConversionController extends Controller
 {
@@ -14,7 +16,6 @@ class ConversionController extends Controller
      */
     public function index($devise_1, $devise_2, $amount)
     {
-
         try {
             $devise = Paires::where('devise_1', $devise_1)->where('devise_2', $devise_2)->first();
 
@@ -44,7 +45,7 @@ class ConversionController extends Controller
         }
     }
 
-    /**
+      /**
      * Display the specified count of conversion.
      *
      * @param  $getConversionCount

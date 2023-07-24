@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use Error;
+use App\Http\Controllers\Controller;
 use App\Models\Paires;
+use Error;
 use Illuminate\Http\Request;
 
 class PaireController extends Controller
@@ -15,12 +16,12 @@ class PaireController extends Controller
      */
     public function index()
     {
-        //recuperation de l'ensemble des paires et renvoi un status 200 (ok)
-        $data = Paires::all();
-        return response()->json([
-            "response" => $data,
-            "status" => 200
-        ]);
+         //recuperation de l'ensemble des paires et renvoi un status 200 (ok)
+         $data = Paires::all();
+         return response()->json([
+             "response" => $data,
+             "status" => 200
+         ]);
     }
 
     /**
@@ -31,11 +32,10 @@ class PaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             "devise_1" => "required|size:3",
             "devise_2" => "required|size:3",
-            "taux" => "required|integer",
+            "taux" => "required|numeric",
         ]);
 
         try {
@@ -52,7 +52,7 @@ class PaireController extends Controller
         }
     }
 
-
+ 
     /**
      * Update the specified resource in storage.
      *

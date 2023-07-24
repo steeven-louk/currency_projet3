@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Devises;
 use Error;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class DeviseController extends Controller
     }
 
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -30,7 +32,6 @@ class DeviseController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             "name" => "required|unique:devises"
         ]);
@@ -46,7 +47,7 @@ class DeviseController extends Controller
         }
     }
 
-
+   
 
     /**
      * Update the specified resource in storage.
