@@ -1,14 +1,19 @@
 <script setup>
-import axios from 'axios';
 import BreezeAuthenticatedLayout from '../Layouts/Authenticated.vue';
+import axios from 'axios';
 import { Head } from '@inertiajs/inertia-vue3';
+
 import { ref, watch , watchEffect} from 'vue';
+
 import {getDevises , getPaires,addPaires, addDevises, deleteDevises, updateDevises, deletePaires} from "../admin/services.js"
+
 const devises = ref([]);
 const paires = ref([]);
+
 const showModal = ref(false);
 const showUpdateModal = ref(false);
 const showPaireModal = ref(false);
+
 const deviseName = ref("");
 const device_1 = ref("");
 const device_2 = ref("");
@@ -16,18 +21,17 @@ const taux = ref("");
 const alertMsg = ref("");
 
 
-
-
-    getPaires(paires);
+getPaires(paires);
  
+
 const addDevise =()=>{
     addDevises(deviseName, showModal)
-    getDevises(devises);
+    getDevises(devises); //actualisation de la liste de devise
 
 }
 const addPaire =()=>{
     addPaires(devise_1,devise_2, taux, showPaireModal)
-    getPaires(paires);
+    getPaires(paires);//actualisation de la liste des paires
 
 }
 const deleteDevise = (id)=>{

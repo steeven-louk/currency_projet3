@@ -1,9 +1,9 @@
 import axios from "axios";
 
+//fonction permettant d'ajouter une devise
 const addDevises = async (deviseName, showModal) => {
     try {
         const data = await axios.post('/api/devise', { name: deviseName.value })
-        console.log(data);
         deviseName.value = "";
         showModal.value = false;
 
@@ -12,6 +12,7 @@ const addDevises = async (deviseName, showModal) => {
     }
 }
 
+//fonction permettant d'ajouter une paire
 const addPaires = async (devise_1,devise_2, taux, showPaireModal) => {
     try {
         const data = await axios.post('/api/paire', { devise_1: devise_1.value, devise_2: devise_2.value,taux: taux.value})
@@ -26,6 +27,7 @@ const addPaires = async (devise_1,devise_2, taux, showPaireModal) => {
 }
 
 
+//fonction permettant de recuperer la liste des devise
 const getDevises = async (devises) => {
     try {
         const { data } = await axios('/api/devise')
@@ -35,6 +37,7 @@ const getDevises = async (devises) => {
     }
 }
 
+//fonction permettant de recuperer la liste des paires
 const getPaires = async (paires) => {
     try {
         const { data } = await axios('/api/paire')
@@ -44,6 +47,7 @@ const getPaires = async (paires) => {
     }
 }
 
+//fonction permettant de supprimer une devise
 const deleteDevises = async (id) => {
     try {
       await axios.delete('/api/devise/' + id);
@@ -55,30 +59,27 @@ const deleteDevises = async (id) => {
     }
 }
 
+//fonction permettant de modifier une devises
 const updateDevises = async (id) => {
     try {
         const { data } = await axios.put('/api/paire/' + id);
-
-       
-        // getPaires();
-        console.log(data);
     } catch (error) {
         console.log(error);
     }
 }
 
+//fonction permettant de supprimer une paires
 const deletePaires = async (id, paires) => {
     try {
         const { data } = await axios.delete('/api/paire/' + id);
 
-        // setTimeout(alertMsg.value = data.message, 3000);
         getPaires(paires);
-        console.log(data);
     } catch (error) {
         console.log(error);
     }
 }
 
+//fonction permettant de modifier une paires
 const updatePaires = async (id) => {
     try {
         const { data } = await axios.put('/api/paire/' + id);
@@ -90,5 +91,7 @@ const updatePaires = async (id) => {
         console.log(error);
     }
 }
+
+
 
 export  {addDevises, getDevises, getPaires,addPaires, deleteDevises, deletePaires, updatePaires, updateDevises};

@@ -794,6 +794,9 @@ select {
 .mt-8 {
   margin-top: 2rem;
 }
+.mt-5 {
+  margin-top: 1.25rem;
+}
 .block {
   display: block;
 }
@@ -954,6 +957,9 @@ select {
 .gap-4 {
   gap: 1rem;
 }
+.gap-6 {
+  gap: 1.5rem;
+}
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
@@ -1082,6 +1088,18 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
 .fill-current {
   fill: currentColor;
 }
@@ -1090,6 +1108,12 @@ select {
 }
 .p-6 {
   padding: 1.5rem;
+}
+.p-4 {
+  padding: 1rem;
+}
+.p-5 {
+  padding: 1.25rem;
 }
 .px-1 {
   padding-left: 0.25rem;
@@ -1157,6 +1181,12 @@ select {
 }
 .pt-8 {
   padding-top: 2rem;
+}
+.pr-2 {
+  padding-right: 0.5rem;
+}
+.pr-3 {
+  padding-right: 0.75rem;
 }
 .text-left {
   text-align: left;
@@ -1283,6 +1313,9 @@ select {
 }
 .underline {
   text-decoration-line: underline;
+}
+.underline-offset-4 {
+  text-underline-offset: 4px;
 }
 .antialiased {
   -webkit-font-smoothing: antialiased;

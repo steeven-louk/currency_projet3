@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Devises;
+use Error;
 use Illuminate\Http\Request;
 
 class DeviseController extends Controller
@@ -14,9 +15,10 @@ class DeviseController extends Controller
      */
     public function index()
     {
+        //recuperation de l'ensemble des devises et renvoi un status 200 (ok)
+
         $data = Devises::all();
-        return response()->json(["response" => $data, "status"=> 200],200);
-        //
+        return response()->json(["response" => $data, "status" => 200]);
     }
 
 
@@ -30,14 +32,18 @@ class DeviseController extends Controller
     {
         //
         $request->validate([
-            "name" =>"required|unique:devises"
+            "name" => "required|unique:devises"
         ]);
 
-        $devise = new Devises();
-        $devise->name = $request->input('name');
-        $devise->save();
+        try {
+            $devise = new Devises();
+            $devise->name = $request->input('name');
+            $devise->save();
 
-        return response()->json(["message"=>"devise has been created",$devise, "status"=> 201], 201);
+            return response()->json(["message" => "devise has been created", $devise, "status" => 201], 201);
+        } catch (Error $e) {
+            response()->json($e, 500);
+        }
     }
 
 
@@ -54,15 +60,15 @@ class DeviseController extends Controller
         $request->validate([
             'name' => 'required|unique:devises,name,' . $id,
         ]);
-    
+
         $devise = Devises::findOrFail($id);
 
-        if(!$devise) return response()->json(["error"=> "devises not found", "status"=> 404],404);
+        if (!$devise) return response()->json(["error" => "devises not found", "status" => 404], 404); //si la devise n'existe pas, renvoi une erreur 404
 
         $devise->name = $request->input('name');
         $devise->save();
-    
-        return response()->json(["message"=>"devise has been updated successfully","reponse"=>$devise, "status"=>200],200);
+
+        return response()->json(["message" => "devise has been updated successfully", "reponse" => $devise, "status" => 200]);
     }
 
     /**
@@ -75,11 +81,10 @@ class DeviseController extends Controller
     {
         //
         $devise =  Devises::FindOrFail($id);
-        if(!$devise) return response()->json(["error"=> "devises not found", "status"=> 404],404);
+        if (!$devise) return response()->json(["error" => "devises not found", "status" => 404], 404);
 
-        $devise-> delete();
+        $devise->delete();
 
-        return response()->json(["message"=>"devise has been deleted successfully", "status"=>200],200);
-
+        return response()->json(["message" => "devise has been deleted successfully", "status" => 200]);
     }
 }
