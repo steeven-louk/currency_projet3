@@ -78,8 +78,8 @@ L'application offre les fonctionnalités suivantes :
 
 ## Technologie utilisée
 
--Laravel 8.x - Framework PHP pour le backend.
--Vue.js 3.x - Framework JavaScript pour le frontend.
+- Laravel 8.x - Framework PHP pour le backend.
+- Vue.js 3.x - Framework JavaScript pour le frontend.
 
 ## Auteurs
 Ce projet a été développé par Steeven Loukanou.
