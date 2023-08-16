@@ -22,6 +22,6 @@ class DeviseTableSeeder extends Seeder
             ['name'=> 'BTC']
         ];
 
-        DB::table('Devises')->insert($devises);
+        DB::table('devises')->insert($devises);
     }
 }
