@@ -45,6 +45,14 @@ npm install
 yarn install
 ```
 
+Initialisez le fichier .env
+
+```bash
+dupliquer .env.example
+# et
+renommer .env
+```
+
 Exécutez les migrations pour créer les tables nécessaires dans la base de données :
 
 ```bash
@@ -57,6 +65,12 @@ Exécutez le seeder pour pré-remplir la table des paires de devises avec des do
 php artisan db:seed --class=UserTableSeeder
 php artisan db:seed --class=DeviseTableSeeder
 php artisan db:seed --class=PaireTableSeeder
+```
+
+Generez la Clé d'API
+
+```bash
+php artisan key:generate
 ```
 
 ## Utilisation
